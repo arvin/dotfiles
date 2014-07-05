@@ -14,8 +14,6 @@ set incsearch " do incremental searching
 set hidden
 set backspace=indent,eol,start 
 set wildmenu
-syntax on
-colorscheme elflord
 set tabstop=2
 set shiftwidth=2
 set cursorline
@@ -23,6 +21,14 @@ set cursorcolumn
 set nowrap
 set hlsearch
 set ignorecase
+set noswapfile
+syntax on
+
+if ! has("gui_running") 
+	set t_Co=256 
+endif 
+set background=dark
+colorscheme peaksea 
 
 " Status line
 set laststatus=2
@@ -40,11 +46,11 @@ set statusline+=%<%P                         " file position
 set wildignore+=*.so,*.swp,*.zip
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
 set wildignore+=*.pyc
+set wildignore+=*.o,*.d
 
 " Set up omnicomplete files
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd Filetype python ab ifname if __name__ == '__main__':<CR>
+autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
 if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
 	!git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
@@ -65,7 +71,9 @@ Bundle 'vim-scripts/AutoComplPop'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'majutsushi/tagbar'
+Bundle 'vim-scripts/peaksea'
 Bundle 'scrooloose/nerdtree'
+Bundle 'vim-scripts/blackboard.vim'
 
 filetype plugin indent on " Required for vundle
 
