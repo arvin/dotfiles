@@ -3,7 +3,7 @@ let mapleader='\'
 
 " Basic settings
 set number "sets numbers
-set softtabstop=2
+set softtabstop=4
 set autoindent
 set cindent
 set vb " turns off visual bell
@@ -14,8 +14,8 @@ set incsearch " do incremental searching
 set hidden
 set backspace=indent,eol,start 
 set wildmenu
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set cursorline
 set cursorcolumn
 set nowrap
@@ -28,7 +28,7 @@ if ! has("gui_running")
 	set t_Co=256 
 endif 
 set background=dark
-colorscheme peaksea 
+colorscheme blackboard 
 
 " Status line
 set laststatus=2
@@ -74,6 +74,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'vim-scripts/peaksea'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/blackboard.vim'
+Bundle 'scrooloose/syntastic'
 
 filetype plugin indent on " Required for vundle
 
@@ -89,6 +90,28 @@ map <leader>y :YRShow<CR>
 
 " AutoComplPop Options
 let g:acp_behaviorPythonOmniLength = -1
+
+" Syntastic Options 
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_cpp_compiler = "g++"
+let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_no_include_search = 0
+if has("unix")
+  let g:syntastic_error_symbol = ">"
+  let g:syntastic_style_error_symbol = ">"
+  let g:syntastic_warning_symbol = "!"
+  let g:syntastic_style_warning_symbol = ">"
+else
+  let g:syntastic_error_symbol = ">"
+  let g:syntastic_style_error_symbol = ">"
+  let g:syntastic_warning_symbol = "!"
+  let g:syntastic_style_warning_symbol = ">"
+endif
+
 
 " Turn on Rainbow Parens by default
 au VimEnter * RainbowParenthesesToggle
